@@ -85,6 +85,28 @@ class QuestionForm extends HTMLElement{
                     answ = 0;
                 }
                 this.answers.push(parseInt(answ));
+
+                const sendResult = async (result) => {
+                    try{
+                        const options = {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "X-Auth-Token": "12345"
+                            },
+                            body: JSON.stringify(result)
+                        }
+                 
+                        const response = await fetch(`http://127.0.0.1:5000/predict`, options)
+                        const responseJson = await response.json();
+                        console.log(responseJson.message);
+                    } catch(error) {
+                        console.log(error)
+                    }
+                }
+                alert("done");
+
+                sendResult(this.answers)
             });
             
             
@@ -103,14 +125,18 @@ class QuestionForm extends HTMLElement{
                 tempData["answers"] = this.answers;
     
                 console.log(tempData);
+
+                const dat = tempData;
     
                 tempData = JSON.stringify(tempData);
     
                 localStorage.setItem("TEMP_DATA",tempData);
 
-                location.hash = "#main";
+                // location.hash = "#main";
 
-                
+
+
+
             }
 
         })

@@ -5,7 +5,7 @@ import os
 
 # model = pickle.load(open('model.pkl', 'rb'))
 
-# template_dir = os.path.abspath('./templates/Capstone/src')
+# template_dir = os.path.abspath('/static/dist')
 
 # print(template_dir)
 app = Flask(__name__,static_folder='', static_url_path='')
@@ -16,7 +16,7 @@ def hello():
 
 @app.route('/predict',methods=['POST'])
 def predict():
-    pass
+    print(request.data)
 
 #     int_features = [int(x) for x in request.form.values()]
 #     final_features = [np.array(int_features)]
