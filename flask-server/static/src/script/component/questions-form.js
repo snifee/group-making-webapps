@@ -1,11 +1,54 @@
 import { event } from "jquery";
 import "./question-item.js";
+import BrowserStorage from "../data/data.js";
 
 class QuestionForm extends HTMLElement{
 
     set questions(questions){
         this._questions=questions;
     }
+
+    // set prediction(prediction){
+    //     this._prediction = prediction;
+    // }
+
+    sendResult = async (result) => {
+        try{
+            const options = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-Auth-Token": "12345"
+                },
+                body: JSON.stringify(result)
+            }
+     
+            const response = await fetch(`http://127.0.0.1:5000/predict`, options)
+            const responseJson = await response.json();
+            console.log(responseJson.message);
+        } catch(error) {
+            console.log(error)
+        }
+    }
+
+    // getPrediction = async () => {
+    //     try {
+    //       const response = await fetch(`http://127.0.0.1:5000/predict`);
+    //       const responseJson = await response.json();
+    //       if(responseJson.error) {
+    //          alert(responseJson.message);
+    //          return await responseJson;
+    //       } else {
+    //          console.log(responseJson);
+    //          return await responseJson;
+    //       }
+    //     } catch(error) {
+    //        console.log(error);
+    //        return null;
+    //     }
+    // }
+
+
 
     connectedCallback(){
         this.innerHTML = `
@@ -16,6 +59,11 @@ class QuestionForm extends HTMLElement{
 
                 .col-8{
                     overflow-y:scroll;
+                    height: 500px;
+                }
+
+                .list-group{
+                    overflow-y:auto;
                     height: 500px;
                 }
     
@@ -59,9 +107,17 @@ class QuestionForm extends HTMLElement{
                 anchorTag.setAttribute("href",`#${question.id}`);
                 anchorTag.innerHTML = question.id;
 
+                
+
+                
                 item.question = question; 
                 this.getElementsByClassName("question-list")[0].appendChild(item);
                 div.appendChild(anchorTag);
+                if (question.id.includes("01")) {
+                    const h3 = document.createElement("h3");
+                    h3.innerHTML = question.id.substr(0, 3)
+                    this.getElementsByClassName(`baris${temp}`)[0].appendChild(h3)
+                }
                 this.getElementsByClassName(`baris${temp}`)[0].appendChild(div);
            
             } catch (error) {
@@ -86,58 +142,46 @@ class QuestionForm extends HTMLElement{
                 }
                 this.answers.push(parseInt(answ));
 
-                const sendResult = async (result) => {
-                    try{
-                        const options = {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json",
-                                "X-Auth-Token": "12345"
-                            },
-                            body: JSON.stringify(result)
-                        }
-                 
-                        const response = await fetch(`http://127.0.0.1:5000/predict`, options)
-                        const responseJson = await response.json();
-                        console.log(responseJson.message);
-                    } catch(error) {
-                        console.log(error)
-                    }
-                }
-                alert("done");
+                // const 
+                // alert("done");
 
-                sendResult(this.answers)
             });
+            
+            this.sendResult(this.answers);
+            let value1;
+            
+
+            const getPrediction =  fetch("http://127.0.0.1:5000/predict")
+                .then((response) => response.json())
+                .then((response) => {
+                    console.log("hehe" + response.value)
+                        
+                    let tempData = localStorage.getItem("TEMP_DATA");
+        
+                    tempData = JSON.parse(tempData);
+        
+                    tempData["id_personality"] = response.value;
+            
+                    tempData["personality"] = "null";
+            
+                    console.log(tempData);
+        
+                    tempData = JSON.stringify(tempData);
+            
+                    //     localStorage.setItem("TEMP_DATA",tempData);
+        
+                    BrowserStorage.saveDataPerson(tempData);
+        
+                    location.hash = "#main";
+            });
+
+            
             
             
             event.preventDefault();
 
-            let tempData = localStorage.getItem("TEMP_DATA");
-
-            if (tempData == null) {
-                alert("Data Hilang, Kembali ke masukkan data");
-
-                location.hash = "#add-person";
-            }else{
-
-                tempData = JSON.parse(tempData);
-    
-                tempData["answers"] = this.answers;
-    
-                console.log(tempData);
-
-                const dat = tempData;
-    
-                tempData = JSON.stringify(tempData);
-    
-                localStorage.setItem("TEMP_DATA",tempData);
-
-                // location.hash = "#main";
-
-
-
-
-            }
+            
+            
 
         })
     }

@@ -4,12 +4,14 @@ class BrowserStorage{
     static getAllData(){
          let  result = localStorage.getItem(STORAGE_KEY);
          result = JSON.parse(result);
-         return result;
+
+        return result;
+             
     }
 
     static saveDataPerson(data){
         let dataOnStorage = this.getAllData();
-        dataOnStorage = JSON.parse(dataOnStorage);
+        console.log(dataOnStorage);
 
         if (dataOnStorage == null) {
             dataOnStorage = [];

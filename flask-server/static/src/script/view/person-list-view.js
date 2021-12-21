@@ -7,36 +7,64 @@ import BrowserStorage from '../data/data.js';
 
 
 function personListView(){
-    const personList = document.createElement("person-list");
-    personList.students = students;
+    let data = BrowserStorage.getAllData();
+    if (data !== null) {
 
-    // const modal = document.createElement("modal-item");
-    // personList.appendChild(modal);
-    // personList.students = BrowserStorage.getAllData();
+        const person = [];
 
-    const buttonCreateTeam = document.createElement("button");
-    buttonCreateTeam.innerHTML="Create Team";
-    buttonCreateTeam.setAttribute("class","btn btn0 btn-dark");
-    buttonCreateTeam.setAttribute("data-bs-toggle", "modal");
-    buttonCreateTeam.setAttribute('href',"#exampleModalToggle");
-    personList.appendChild(buttonCreateTeam);
+        data.forEach(item => {
+            person.push(JSON.parse(item));
+        })
+        
+        const personList = document.createElement("person-list");
+        // personList.students = students;
+    
+        personList.students = person;
+    
+        // const modal = document.createElement("modal-item");
+        // personList.appendChild(modal);
+    
+        const buttonCreateTeam = document.createElement("button");
+        buttonCreateTeam.innerHTML="Create Team";
+        buttonCreateTeam.setAttribute("class","btn btn0 btn-dark");
+        buttonCreateTeam.setAttribute("data-bs-toggle", "modal");
+        buttonCreateTeam.setAttribute('href',"#exampleModalToggle");
+        personList.appendChild(buttonCreateTeam);
+    
+        buttonCreateTeam.addEventListener("click",event =>{
+    
+            const numOfMember = prompt("Input Number of Member");
+    
+            const dataTeam = makeTeam(numOfMember);
+    
+            console.log(dataTeam)
+    
+            localStorage.setItem("TEAM_RESULT",JSON.stringify(dataTeam));
+    
+    
+            location.hash = '#team';
+        })
 
-    buttonCreateTeam.addEventListener("click",event =>{
+        const deleteButton = document.createElement("button");
+        deleteButton.innerHTML="Delete All Person";
+        deleteButton.setAttribute("class","btn btn0 btn-dark");
+        deleteButton.setAttribute("data-bs-toggle", "modal");
+        deleteButton.setAttribute('href',"#exampleModalToggle");
+        personList.appendChild(deleteButton);
 
-        const numOfMember = prompt("Input Number of Member");
+        deleteButton.addEventListener("click", event =>{
+            localStorage.removeItem("APP_DATA");
+            location.reload();
+        })
+    
+    
+        return personList;
+    }
 
-        const dataTeam = makeTeam(numOfMember);
+    const h1 = document.createElement('h1');
+    h1.innerHTML = "Welcome, Let's make your team!";
 
-        console.log(dataTeam)
-
-        localStorage.setItem("TEAM_RESULT",JSON.stringify(dataTeam));
-
-
-        location.hash = '#team';
-    })
-
-
-    return personList;
+    return h1;
 
 }
 

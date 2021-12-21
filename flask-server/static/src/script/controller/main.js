@@ -14,7 +14,6 @@ function removeAllChild(node) {
 }
 
 const header = document.createElement("header-item");
-document.body.innerHTML = "<h1>hello</h1>"
 document.body.appendChild(header);
 
 const mainTag = document.createElement('main');

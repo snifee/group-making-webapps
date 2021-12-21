@@ -17,6 +17,8 @@ class Question extends HTMLElement{
                 }
             </style>
             <div class="mb-3 question">
+                <label>${this._question.id}</label>
+                <br>
                 <label id="${this._question.id}" for="question-${this._question.id}"  class="form-label"><strong>${this._question.question}</strong></label>
                 <div class="answer-${this._question.id}">
                     <div class="form-check form-check-inline">
