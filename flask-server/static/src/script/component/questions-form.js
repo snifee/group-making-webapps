@@ -8,48 +8,6 @@ class QuestionForm extends HTMLElement{
         this._questions=questions;
     }
 
-    // set prediction(prediction){
-    //     this._prediction = prediction;
-    // }
-
-    // sendResult = async (result) => {
-    //     try{
-    //         const options = {
-    //             method: "POST",
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //                 "X-Auth-Token": "12345"
-    //             },
-    //             body: JSON.stringify(result)
-    //         }
-     
-    //         const response = await fetch(`http://127.0.0.1:5000/predict`, options)
-    //         const responseJson = await response.json();
-    //         console.log(responseJson.message);
-    //     } catch(error) {
-    //         console.log(error)
-    //     }
-    // }
-
-    // getPrediction = async () => {
-    //     try {
-    //       const response = await fetch(`http://127.0.0.1:5000/predict`);
-    //       const responseJson = await response.json();
-    //       if(responseJson.error) {
-    //          alert(responseJson.message);
-    //          return await responseJson;
-    //       } else {
-    //          console.log(responseJson);
-    //          return await responseJson;
-    //       }
-    //     } catch(error) {
-    //        console.log(error);
-    //        return null;
-    //     }
-    // }
-
-
-
     connectedCallback(){
         this.innerHTML = `
             <style>
@@ -147,8 +105,7 @@ class QuestionForm extends HTMLElement{
 
             });
             
-            // this.sendResult(this.answers);
-            // let value1;
+
 
             const options = {
                 method: "POST",
@@ -170,8 +127,21 @@ class QuestionForm extends HTMLElement{
                     tempData = JSON.parse(tempData);
         
                     tempData["id_personality"] = response.value;
-            
-                    tempData["personality"] = "null";
+                    
+                    if(response.value === 0){
+                        tempData["personality"] = "Personality1";
+                    }else if(response.value === 1){
+                        tempData["personality"] = "Personality2";
+                    }else if(response.value === 2){
+                        tempData["personality"] = "Personality3";
+                    }else if(response.value === 3){
+                        tempData["personality"] = "Personality4";
+                    }else if(response.value === 4){
+                        tempData["personality"] = "Personality5";
+                    }else{
+                        tempData["personality"] = "?";
+                    }
+
             
                     console.log(tempData);
         

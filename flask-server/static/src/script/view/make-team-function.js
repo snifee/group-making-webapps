@@ -12,34 +12,48 @@ return "Array is Undefined";
 }
 
 export default function makeTeam(numberOfTeam) {
-    // const data = BrowserStorage.getAllData();
+    const dataRaw = BrowserStorage.getAllData();
 
-    const data = students.sort((firstItem, secondItem) => firstItem.id_personality - secondItem.id_personality);
-    if(numberOfTeam>=data.length){
+    const person = [];
+
+        dataRaw.forEach(item => {
+            person.push(JSON.parse(item));
+        })
+
+    const data = person.sort((firstItem, secondItem) => firstItem.id_personality - secondItem.id_personality);
+
+    if(numberOfTeam>data.length){
         alert("Too many num of team");
+
         return 0;
     }
 
+    // if(numberOfTeam === 1){
+    //     alert("Can't create 1 team");
+
+    //     return 0;
+    // }
+
     const memberEachTeam = Math.floor(data.length / numberOfTeam);
-    const responsible = [];
-    const lively = [];
-    const extraverted = [];
-    const dependable = [];
-    const serious = [];
+    // const responsible = [];
+    // const lively = [];
+    // const extraverted = [];
+    // const dependable = [];
+    // const serious = [];
     
-    data.forEach(i=>{
-        if (i.personality === "responsible") {
-            responsible.push(i);
-        }else if (i.personality === "lively") {
-            lively.push(i);
-        }else if (i.personality === "extraverted") {
-            extraverted.push(i);
-        }else if (i.personality === "dependable") {
-            dependable.push(i);
-        }else if (i.personality === "serious") {
-            serious.push(i);
-        }
-    })
+    // data.forEach(i=>{
+    //     if (i.personality === "responsible") {
+    //         responsible.push(i);
+    //     }else if (i.personality === "lively") {
+    //         lively.push(i);
+    //     }else if (i.personality === "extraverted") {
+    //         extraverted.push(i);
+    //     }else if (i.personality === "dependable") {
+    //         dependable.push(i);
+    //     }else if (i.personality === "serious") {
+    //         serious.push(i);
+    //     }
+    // })
     
     
     const teams =[]
@@ -47,6 +61,7 @@ export default function makeTeam(numberOfTeam) {
         teams.push(new Team(`TEAM${i}`));
     }
     
+    // console.log(teams)
 
     const selectedMember = [];
                 
@@ -78,37 +93,42 @@ export default function makeTeam(numberOfTeam) {
     // console.log(teams.filter(x,y => x.members.length - y.members.length ))
 
     //Fiter minimal team
-    
-    
-    
-    if (!checkArrayEqualElements(teams.map(x => x.members.length))) {
-        alert("y");
-        sisa.forEach(item =>{
-            let min = Math.min(...teams.map(item => item.members.length))
-            teams.forEach(team => {
-                // console.log(team);
-                if (team.members.length == min) {
-                    console.log(item);
-                    console.log(team)
-                    team.members.push(item);
-                    return false;
-                }
-            })
-        })
-    }else{
-        alert("s")
-        teams.forEach(x=>{
-            // while(sisa.length !=0) {
-                x.members.push(sisa.pop());
-    
-                // sisa.splice(i,1);
-    
-                // break;
-                
-            // }
-        })
 
+    console.log(sisa);
+    
+    
+    if (sisa.length !== 0) {
+        
+        if (!checkArrayEqualElements(teams.map(x => x.members.length))) {
+            // alert("y");
+            sisa.forEach(item =>{
+                let min = Math.min(...teams.map(item => item.members.length))
+                teams.forEach(team => {
+                    // console.log(team);
+                    if (team.members.length == min) {
+                        // console.log(item);
+                        // console.log(team)
+                        team.members.push(item);
+                        return false;
+                    }
+                })
+            })
+        }else{
+            // alert("s")
+            teams.forEach(x=>{
+                // while(sisa.length !=0) {
+                    x.members.push(sisa.pop());
+        
+                    // sisa.splice(i,1);
+        
+                    // break;
+                    
+                // }
+            })
+    
+        }
     }
+    
 
     // data.forEach(item =>{
     //     console.log(item);
@@ -126,6 +146,7 @@ export default function makeTeam(numberOfTeam) {
     //     })
     // })
     
+    console.log(teams)
 
     return teams;
 }

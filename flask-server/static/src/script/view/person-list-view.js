@@ -8,7 +8,7 @@ import BrowserStorage from '../data/data.js';
 
 function personListView(){
     let data = BrowserStorage.getAllData();
-    if (data !== null) {
+    if (students !== null) {
 
         const person = [];
 
@@ -17,12 +17,11 @@ function personListView(){
         })
         
         const personList = document.createElement("person-list");
+        
         // personList.students = students;
     
         personList.students = person;
     
-        // const modal = document.createElement("modal-item");
-        // personList.appendChild(modal);
     
         const buttonCreateTeam = document.createElement("button");
         buttonCreateTeam.innerHTML="Create Team";
@@ -34,15 +33,19 @@ function personListView(){
         buttonCreateTeam.addEventListener("click",event =>{
     
             const numOfMember = prompt("Input Number of Member");
+
+            if (numOfMember !== null) {
+                
+                const dataTeam = makeTeam(numOfMember);
+        
+                console.log(dataTeam)
+        
+                localStorage.setItem("TEAM_RESULT",JSON.stringify(dataTeam));
+        
+        
+                location.hash = '#team';
+            }
     
-            const dataTeam = makeTeam(numOfMember);
-    
-            console.log(dataTeam)
-    
-            localStorage.setItem("TEAM_RESULT",JSON.stringify(dataTeam));
-    
-    
-            location.hash = '#team';
         })
 
         const deleteButton = document.createElement("button");
