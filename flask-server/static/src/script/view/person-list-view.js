@@ -61,8 +61,14 @@ function personListView(){
         return personList;
     }
 
+    // const divForNull = document.createElement("div");
+    // divForNull.style.backgroundImage = "url(./5431519.jpg)"
+
     const h1 = document.createElement('h1');
     h1.innerHTML = "Welcome, Let's make your team!";
+
+    // divForNull.appendChild(h1);
+
 
     return h1;
 

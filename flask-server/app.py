@@ -18,35 +18,74 @@ def hello():
 
 @app.route('/predict',methods=['GET','POST'])
 def predict():
-    data = request.json
+    data = request.get_json(force=True)
 
-    data = (data)
-    # pass
+    # if data == None:
+    #     return jsonify({'value': 4})
+    try:
+        data = [np.array(data)]
+        prediction = model.predict(data)
+        print(prediction)
+    except NameError:
+        print("hai")
 
-    # int_features = [int(x) for x in data]    
-    final_features = [data]
-    # try:
-        
-    #     prediction = model.predict(final_features)
-    #     print(model)
-    # except NameError:
-    #     print(NameError)
+    result = int(prediction[0])
 
-    print(data)
+    return jsonify({'value': result})
+# #     output = round(prediction[0], 2)
 
-    return jsonify({'value': [[4]]})
-#     output = round(prediction[0], 2)
+# #     return render_template('index.html', prediction_text='Sales should be $ {}'.format(output))
 
-#     return render_template('index.html', prediction_text='Sales should be $ {}'.format(output))
+# # @app.route('/results',methods=['POST'])
+# # def results():
 
-# @app.route('/results',methods=['POST'])
-# def results():
+# #     data = request.get_json(force=True)
+# #     prediction = model.predict([np.array(list(data.values()))])
 
-#     data = request.get_json(force=True)
-#     prediction = model.predict([np.array(list(data.values()))])
-
-#     output = prediction[0]
-#     return jsonify(output)
+# #     output = prediction[0]
+# #     return jsonify(output)
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+#================================================================
+# @app.route('/predict', methods=['GET','POST'])
+# def predict():
+    
+#     if request.method == "POST":
+#         #get form data
+#         data = request.json;
+
+#         # print(data);
+        
+#         #call preprocessDataAndPredict and pass inputs
+#         try:
+#             prediction = cluster(data)
+#             #pass prediction to template
+#             return prediction
+   
+#         except ValueError:
+#             return "Please Enter valid values"
+  
+#         pass
+#     pass
+# def cluster(data):
+    
+#     #keep all inputs in array
+#     input = np.array(data)
+
+    
+#     #reshape array
+#     input = input.reshape(1,-1)
+#     print('hehehe')
+#     print(input)
+    
+#     #predict
+#     prediction = model.predict(input)
+    
+#     return prediction
+    
+#     pass
+# if __name__ == '__main__':
+#     app.run(debug=True)

@@ -12,24 +12,24 @@ class QuestionForm extends HTMLElement{
     //     this._prediction = prediction;
     // }
 
-    sendResult = async (result) => {
-        try{
-            const options = {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-Auth-Token": "12345"
-                },
-                body: JSON.stringify(result)
-            }
+    // sendResult = async (result) => {
+    //     try{
+    //         const options = {
+    //             method: "POST",
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //                 "X-Auth-Token": "12345"
+    //             },
+    //             body: JSON.stringify(result)
+    //         }
      
-            const response = await fetch(`http://127.0.0.1:5000/predict`, options)
-            const responseJson = await response.json();
-            console.log(responseJson.message);
-        } catch(error) {
-            console.log(error)
-        }
-    }
+    //         const response = await fetch(`http://127.0.0.1:5000/predict`, options)
+    //         const responseJson = await response.json();
+    //         console.log(responseJson.message);
+    //     } catch(error) {
+    //         console.log(error)
+    //     }
+    // }
 
     // getPrediction = async () => {
     //     try {
@@ -147,13 +147,22 @@ class QuestionForm extends HTMLElement{
 
             });
             
-            this.sendResult(this.answers);
-            let value1;
-            
+            // this.sendResult(this.answers);
+            // let value1;
 
-            const getPrediction =  fetch("http://127.0.0.1:5000/predict")
+            const options = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-Auth-Token": "12345"
+                },
+                body: JSON.stringify(this.answers)
+            }
+
+
+            const sendResult = fetch(`http://127.0.0.1:5000/predict`, options)
                 .then((response) => response.json())
-                .then((response) => {
+                .then((response) =>{
                     console.log("hehe" + response.value)
                         
                     let tempData = localStorage.getItem("TEMP_DATA");
@@ -173,7 +182,33 @@ class QuestionForm extends HTMLElement{
                     BrowserStorage.saveDataPerson(tempData);
         
                     location.hash = "#main";
-            });
+                })
+
+            
+
+            // const getPrediction =  fetch("http://127.0.0.1:5000/predict")
+            //     .then((response) => response.json())
+            //     .then((response) => {
+            //         console.log("hehe" + response.value)
+                        
+            //         let tempData = localStorage.getItem("TEMP_DATA");
+        
+            //         tempData = JSON.parse(tempData);
+        
+            //         tempData["id_personality"] = response.value;
+            
+            //         tempData["personality"] = "null";
+            
+            //         console.log(tempData);
+        
+            //         tempData = JSON.stringify(tempData);
+            
+            //         //     localStorage.setItem("TEMP_DATA",tempData);
+        
+            //         BrowserStorage.saveDataPerson(tempData);
+        
+            //         location.hash = "#main";
+            // });
 
             
             
