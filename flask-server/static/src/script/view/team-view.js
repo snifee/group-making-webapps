@@ -7,9 +7,15 @@ function teamView(params) {
         return 0;
     }
 
+    
+    // console.log('hhhhh')
+    // console.log(typeof(teams))
+    
     teams = JSON.parse(teams);
 
-    const numOfRow = Math.round(teams.length/3);
+    const numOfRow = Math.ceil(teams.length/3);
+
+    // console.log(numOfRow)
 
     const div = document.createElement("div");
 

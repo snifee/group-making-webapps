@@ -55,7 +55,8 @@ function main() {
             container.appendChild(questionForm());
         
         }else if (location.hash === "#team") {
-            if (localStorage.getItem("TEAM_RESULT") !== null) {
+            console.log(localStorage.getItem("TEAM_RESULT"));
+            if (localStorage.getItem("TEAM_RESULT") != 0) {
                 removeAllChild(container);
                 container.appendChild(teamView());
             }else{
