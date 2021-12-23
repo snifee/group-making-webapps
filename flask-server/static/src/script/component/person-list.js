@@ -35,7 +35,7 @@ class PersonList extends HTMLElement{
                     </style>
                     <div class="row div-person" id="$ {this.identity.id}">
                         <h3>${student.name}</h3>
-                        <h4>${student.personality}</h4>
+                        <h4>Personality: ${student.personality}</h4>
                     </div>
                 `;
     

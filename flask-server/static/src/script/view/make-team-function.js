@@ -94,25 +94,39 @@ export default function makeTeam(numberOfTeam) {
 
     //Fiter minimal team
 
+    console.log("sisa");
     console.log(sisa);
+
+    console.log("teams");
+    console.log(teams);
     
     
     if (sisa.length !== 0) {
         
         if (!checkArrayEqualElements(teams.map(x => x.members.length))) {
             // alert("y");
-            sisa.forEach(item =>{
+
+            const num = sisa.length
+
+            for (let i = 0; i < num; i++) {
                 let min = Math.min(...teams.map(item => item.members.length))
-                teams.forEach(team => {
-                    // console.log(team);
-                    if (team.members.length == min) {
+                for (let t = 0; t < teams.length; t++) {
+                    if (teams[t].members.length == min) {
                         // console.log(item);
                         // console.log(team)
-                        team.members.push(item);
-                        return false;
+                        teams[t].members.push(sisa.pop());
+                        break;
                     }
-                })
-            })
+
+                    if (checkArrayEqualElements(teams.map(x => x.members.length))) {
+                        if (sisa.length === 0) {
+                            break;
+                        }
+                    }
+                    
+                }
+                
+            }
         }else{
             // alert("s")
             teams.forEach(x=>{
@@ -125,6 +139,16 @@ export default function makeTeam(numberOfTeam) {
                     
                 // }
             })
+
+            // for (let t = 0; t < teams.length; t++) {
+            //     teams[0].members.push(sisa.pop());
+            //     console.log("jajaja");
+            //     console.log(sisa)
+            //     if (sisa.length === 0) {
+            //         break;
+            //     }
+                
+            // }
     
         }
     }
@@ -146,7 +170,7 @@ export default function makeTeam(numberOfTeam) {
     //     })
     // })
     
-    console.log(teams)
+    // console.log(teams)
 
     return teams;
 }

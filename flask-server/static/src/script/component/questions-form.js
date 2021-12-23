@@ -100,9 +100,6 @@ class QuestionForm extends HTMLElement{
                 }
                 this.answers.push(parseInt(answ));
 
-                // const 
-                // alert("done");
-
             });
             
 
@@ -129,15 +126,15 @@ class QuestionForm extends HTMLElement{
                     tempData["id_personality"] = response.value;
                     
                     if(response.value === 0){
-                        tempData["personality"] = "Personality1";
+                        tempData["personality"] = "Cluster1";
                     }else if(response.value === 1){
-                        tempData["personality"] = "Personality2";
+                        tempData["personality"] = "Cluster2";
                     }else if(response.value === 2){
-                        tempData["personality"] = "Personality3";
+                        tempData["personality"] = "Cluster3";
                     }else if(response.value === 3){
-                        tempData["personality"] = "Personality4";
+                        tempData["personality"] = "Cluster4";
                     }else if(response.value === 4){
-                        tempData["personality"] = "Personality5";
+                        tempData["personality"] = "Cluster5";
                     }else{
                         tempData["personality"] = "?";
                     }
@@ -154,34 +151,8 @@ class QuestionForm extends HTMLElement{
                     location.hash = "#main";
                 })
 
-            
-
-            // const getPrediction =  fetch("http://127.0.0.1:5000/predict")
-            //     .then((response) => response.json())
-            //     .then((response) => {
-            //         console.log("hehe" + response.value)
-                        
-            //         let tempData = localStorage.getItem("TEMP_DATA");
-        
-            //         tempData = JSON.parse(tempData);
-        
-            //         tempData["id_personality"] = response.value;
-            
-            //         tempData["personality"] = "null";
-            
-            //         console.log(tempData);
-        
-            //         tempData = JSON.stringify(tempData);
-            
-            //         //     localStorage.setItem("TEMP_DATA",tempData);
-        
-            //         BrowserStorage.saveDataPerson(tempData);
-        
-            //         location.hash = "#main";
-            // });
-
-            
-            
+                
+                
             
             event.preventDefault();
 

@@ -16,29 +16,29 @@ class Question extends HTMLElement{
                     background-color: white;
                 }
             </style>
-            <div class="mb-3 question">
+            <div class="mb-3 question" id="question${this._question.id}">
                 <label>${this._question.id}</label>
                 <br>
                 <label id="${this._question.id}" for="question-${this._question.id}"  class="form-label"><strong>${this._question.question}</strong></label>
                 <div class="answer-${this._question.id}">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="${this._question.id}" id="inlineRadio1" value="1" required>
+                        <input class="form-check-input" type="radio" name="${this._question.id}" id="${this._question.id}inlineRadio1" value="1" required checked>
                         <label class="form-check-label" for="inlineRadio1">Strongly Disagree</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="${this._question.id}" id="inlineRadio2" value="2">
+                        <input class="form-check-input" type="radio" name="${this._question.id}" id="${this._question.id}inlineRadio2" value="2">
                         <label class="form-check-label" for="inlineRadio2">Disagree</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="${this._question.id}" id="inlineRadio3" value="3" checked>
+                        <input class="form-check-input" type="radio" name="${this._question.id}" id="${this._question.id}inlineRadio3" value="3" >
                         <label class="form-check-label" for="inlineRadio3">Netral</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="${this._question.id}" id="inlineRadio3" value="4">
+                        <input class="form-check-input" type="radio" name="${this._question.id}" id="${this._question.id}inlineRadio4" value="4">
                         <label class="form-check-label" for="inlineRadio3">Agree</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="${this._question.id}" id="inlineRadio3" value="5">
+                        <input class="form-check-input" type="radio" name="${this._question.id}" id="${this._question.id}inlineRadio5" value="5" >
                         <label class="form-check-label" for="inlineRadio3">Strongly Agree</label>
                     </div>
                 </div>

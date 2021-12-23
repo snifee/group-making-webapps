@@ -18,6 +18,9 @@ function teamView(params) {
     // console.log(numOfRow)
 
     const div = document.createElement("div");
+    const h1 = document.createElement('h1');
+    h1.innerHTML = 'Teams Result'
+    div.appendChild(h1);
 
     for (let i = 0; i < numOfRow; i++) {
         const row = document.createElement("div");
