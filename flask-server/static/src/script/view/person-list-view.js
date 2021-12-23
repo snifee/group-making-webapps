@@ -8,7 +8,7 @@ import BrowserStorage from '../data/data.js';
 
 function personListView(){
     let data = BrowserStorage.getAllData();
-    if (students !== null) {
+    if (data !== null) {
 
         const person = [];
 
