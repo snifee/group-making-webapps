@@ -11,9 +11,12 @@
 ### Langkah penggunaan aplikasi:
 
 ### Penjelasan Repository
-- Pada repository terdapat file notebook yang digunakan untuk pengembangan model machine learning.
+- Pada repository terdapat file notebook dengan nama ML_Model_Capstone.ipynb, yang digunakan untuk pengembangan model machine learning.
 - Source code front-end berada pada folder ../static. Pada folder tersebut berisi hasil bundle modul-modul javascript yang digunakan oleh aplikasi web dengan nama bundle.js
-- File bundle.js di-gunakan langsung oleh file index.html yang dideploy oleh web server
+
+### About Code
+- File bundle.js di-gunakan langsung oleh file index.html(pada folder templates) yang dideploy oleh web server
+- Pada folder flask-server terdapat file model.pkl yang di-deploy oleh file app.py untuk melakukan prediksi
 
 
 
