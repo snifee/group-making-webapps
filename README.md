@@ -5,7 +5,7 @@
 ### Link Deployment Aplikasi ini:
 https://capstonecsd010.herokuapp.com/ 
 
-### Untuk membuka aplikasi lokal:
+### Untuk membuka aplikasi secara lokal:
 1. Unduh/clone repository ini ke local
 2. Buat environment pada  conda(anaconda).
 3. Install requirement.txt
