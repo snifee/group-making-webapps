@@ -29,7 +29,3 @@ https://capstonecsd010.herokuapp.com/
 - File bundle.js di-gunakan langsung oleh file index.html(pada folder templates) yang dideploy oleh web server
 - Pada folder flask-server terdapat file model.pkl yang di-deploy oleh file app.py untuk melakukan prediksi
 
-
-
-**NOTE:** 
-**PENGGUNAAN WEB SERVER HANYA UNTUK DEPLOYMENT MODEL ML**
