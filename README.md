@@ -7,9 +7,10 @@ https://capstonecsd010.herokuapp.com/
 
 ### Untuk membuka aplikasi lokal:
 1. Unduh/clone repository ini ke local
-2. Install requirement.txt
-3. Jalankan npm install melalui direktory /flask-server/static
-3. Jalankan app.py, yang berada pada folder flask-server
+2. Buat environment pada  conda(anaconda).
+3. Install requirement.txt
+4. Jalankan npm install melalui direktory /flask-server/static
+5. Jalankan app.py, yang berada pada folder flask-server
 
 ### Langkah penggunaan aplikasi:
 1. Pada tampilan utama klik **Add Person** untuk menambahkan user.
