@@ -2,7 +2,10 @@
 
 ## Web Application Pembentukan Grup Berdasarkan Kepribadian berbasis Machine Learning
 
-### Untuk membuka aplikasi:
+### Link Deployment Aplikasi ini:
+https://capstonecsd010.herokuapp.com/ 
+
+### Untuk membuka aplikasi lokal:
 1. Unduh/clone repository ini ke local
 2. Install requirement.txt
 3. Jalankan npm install melalui direktory /flask-server/static
