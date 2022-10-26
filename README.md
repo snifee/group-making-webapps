@@ -1,4 +1,4 @@
-# Capstone Project CSD-010
+# Capstone Project CSD-010 CRETEAM
 
 ## Web Application Pembentukan Grup Berdasarkan Kepribadian berbasis Machine Learning
 
